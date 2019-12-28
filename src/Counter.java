@@ -15,3 +15,4 @@ public class Counter {
     }
 
 }
+/* Implementation idea: Once hashmap is built, convert each key into a HuffmanTreeNode containing the character */
