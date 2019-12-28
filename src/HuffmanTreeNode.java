@@ -14,6 +14,10 @@ public class HuffmanTreeNode {
         this.children = new HuffmanTreeNode[] {left, right};
     }
 
+    public Character getContent() {
+        return this.content;
+    }
+
     public HuffmanTreeNode getSubTree(Boolean direction) throws Exception {
         try {
             if (direction == Boolean.FALSE) {
