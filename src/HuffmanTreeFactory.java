@@ -14,8 +14,7 @@ public class HuffmanTreeFactory {
         for (Map.Entry<Character, Integer> entry : characterCounts.entrySet()) {
             Character key = entry.getKey();
             Integer value = entry.getValue();
-            HuffmanTreeNode node = new HuffmanTreeNode();
-            node.setLeaf(key);
+            HuffmanTreeNode node = buildHuffmanTreeLeaf(key);
             NodeCount toAdd = new NodeCount(node, value);
             nodes.add(toAdd);
         }
@@ -28,10 +27,21 @@ public class HuffmanTreeFactory {
     }
 
     private static NodeCount createNewNodeCount(NodeCount nc1, NodeCount nc2) {
-        HuffmanTreeNode newNode = new HuffmanTreeNode();
-        newNode.setNode(nc1.getNode(), nc2.getNode());
+        HuffmanTreeNode newNode = buildHuffmanTreeNode(nc1.getNode(), nc2.getNode());
         Integer newCount = nc1.getCount() + nc2.getCount();
         return new NodeCount (newNode, newCount);
+    }
+
+    private static HuffmanTreeNode buildHuffmanTreeLeaf(Character content) {
+        HuffmanTreeNode leaf = new HuffmanTreeNode();
+        leaf.setLeaf(content);
+        return leaf;
+    }
+
+    private static HuffmanTreeNode buildHuffmanTreeNode(HuffmanTreeNode left, HuffmanTreeNode right) {
+        HuffmanTreeNode node = new HuffmanTreeNode();
+        node.setNode(left, right);
+        return node;
     }
 
 }
