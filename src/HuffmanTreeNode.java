@@ -18,7 +18,7 @@ public class HuffmanTreeNode {
         return this.content;
     }
 
-    public HuffmanTreeNode getSubTree(Boolean direction) throws Exception {
+    public HuffmanTreeNode getSubTree(Boolean direction) {
         try {
             if (direction == Boolean.FALSE) {
                 return this.children[0];
@@ -26,7 +26,8 @@ public class HuffmanTreeNode {
                 return this.children[1];
             }
         } catch (Exception e) {
-            throw new Exception("This is a leaf, so has no subtrees");
+            System.out.println("This is a leaf, so has no subtrees");
+            throw e;
         }
     }
 
