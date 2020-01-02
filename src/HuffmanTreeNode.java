@@ -1,6 +1,6 @@
 public class HuffmanTreeNode {
     private Character content;
-    private HuffmanTreeNode[] children;
+    private HuffmanTreeNode[] children = {};
 
     public boolean isLeaf(){
         return this.children.length == 0;
