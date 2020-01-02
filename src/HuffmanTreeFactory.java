@@ -21,7 +21,8 @@ public class HuffmanTreeFactory {
         while (nodes.size() > 1) {
             nodes.sort(Comparator.comparingInt(NodeCount::getCount));
             NodeCount newNode = createNewNodeCount(nodes.get(0), nodes.get(1));
-            nodes.subList(2, nodes.size());
+            nodes = nodes.subList(2, nodes.size());
+            nodes.add(newNode);
         }
         return nodes.get(0).getNode();
     }
