@@ -7,7 +7,7 @@ public class HuffmanTreeNode {
     }
 
     public void setLeaf(Character content) {
-        content = content;
+        this.content = content;
     }
 
     public void setNode(HuffmanTreeNode left, HuffmanTreeNode right) {
