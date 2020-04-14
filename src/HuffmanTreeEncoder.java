@@ -10,14 +10,13 @@ public class HuffmanTreeEncoder {
     }
 
     public String encode(String str) {
-        //TODO: Refactor to use StringBuilder?
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (Character c : str.toCharArray()) {
             //TODO :What to do if char isn't in Huffman tree
             //      Probably crash (IDK)
-            output = output.concat(huffmanTreeLUT.get(c));
+            output.append(huffmanTreeLUT.get(c));
         }
-        return output;
+        return output.toString();
     }
 
     private void buildLUT() {
