@@ -26,8 +26,7 @@ public class HuffmanTreeNode {
                 return this.children[1];
             }
         } catch (Exception e) {
-            System.out.println("This is a leaf, so has no subtrees");
-            throw e;
+            throw new IllegalArgumentException("This is a leaf, so has no subtrees");
         }
     }
 
