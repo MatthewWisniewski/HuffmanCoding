@@ -10,11 +10,12 @@ public class HuffmanTreeEncoder {
     }
 
     public String encode(String str) {
+        //TODO: Refactor to use StringBuilder?
         String output = "";
         for (Character c : str.toCharArray()) {
             //TODO :What to do if char isn't in Huffman tree
             //      Probably crash (IDK)
-            output = output.concat(this.huffmanTreeLUT.get(c));
+            output = output.concat(huffmanTreeLUT.get(c));
         }
         return output;
     }
@@ -24,7 +25,7 @@ public class HuffmanTreeEncoder {
         //For each node, append the relevant path (0/1) to the front of
         // each of the following paths in each subtree, producing a hashmap
         // with each character and the path through the huffman tree to it
-        this.huffmanTreeLUT = buildLUTHelper(this.huffmanTree);
+        huffmanTreeLUT = buildLUTHelper(huffmanTree);
     }
 
     private HashMap<Character, String> buildLUTHelper(HuffmanTreeNode huffmanTree) {

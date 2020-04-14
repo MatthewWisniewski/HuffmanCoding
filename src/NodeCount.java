@@ -9,10 +9,10 @@ public class NodeCount {
     }
 
     public HuffmanTreeNode getNode() {
-        return this.node;
+        return node;
     }
 
     public Integer getCount() {
-        return this.count;
+        return count;
     }
 }

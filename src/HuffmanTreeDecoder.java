@@ -6,7 +6,7 @@ public class HuffmanTreeDecoder {
     }
 
     public String decodeString(String str) {
-        HuffmanTreeNode currentNode = this.huffmanTree;
+        HuffmanTreeNode currentNode = huffmanTree;
         StringBuilder output = new StringBuilder();
         for (Character c : str.toCharArray()) {
 
@@ -18,7 +18,7 @@ public class HuffmanTreeDecoder {
             }
             if (currentNode.isLeaf()) {
                 output.append(currentNode.getContent());
-                currentNode = this.huffmanTree;
+                currentNode = huffmanTree;
             }
         }
         return output.toString();
