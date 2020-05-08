@@ -9,6 +9,10 @@ public class HuffmanTreeEncoder {
         buildLUT();
     }
 
+    public HuffmanTreeEncoder(HashMap<Character, String> LUT) {
+        huffmanTreeLUT = LUT;
+    }
+
     public String encode(String str) {
         StringBuilder output = new StringBuilder();
         for (Character c : str.toCharArray()) {
@@ -25,6 +29,16 @@ public class HuffmanTreeEncoder {
         // each of the following paths in each subtree, producing a hashmap
         // with each character and the path through the huffman tree to it
         huffmanTreeLUT = buildLUTHelper(huffmanTree);
+    }
+
+    public String exportLUTAsBinaryString() {
+        StringBuilder output = new StringBuilder();
+        for (Character c : huffmanTreeLUT.keySet()) {
+            output.append(BinaryStringUtils.convertIntToPaddedBinaryString(huffmanTreeLUT.get(c).length(), 16));
+            output.append(BinaryStringUtils.convertIntToPaddedBinaryString(c, 16));
+            output.append(huffmanTreeLUT.get(c));
+        }
+        return output.toString();
     }
 
     private HashMap<Character, String> buildLUTHelper(HuffmanTreeNode huffmanTree) {
