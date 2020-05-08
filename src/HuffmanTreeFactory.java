@@ -27,6 +27,47 @@ public class HuffmanTreeFactory {
         return nodes.get(0).getNode();
     }
 
+    public static HuffmanTreeNode buildHuffmanTreeFromLUT(HashMap<Character, String> LUT) {
+        return buildHuffmanTreeFromLUT(LUT, "");
+    }
+
+    private static HuffmanTreeNode buildHuffmanTreeFromLUT(HashMap<Character, String> LUT, String startsWith) {
+        HashMap<Character, String> leftLUT = new HashMap<>();
+        HashMap<Character, String> rightLUT = new HashMap<>();
+        for (char c : LUT.keySet()) {
+            if (LUT.get(c).startsWith(startsWith + "0")) {
+                leftLUT.put(c, LUT.get(c));
+            } else {
+                rightLUT.put(c, LUT.get(c));
+            }
+        }
+
+        HuffmanTreeNode left = new HuffmanTreeNode();
+        HuffmanTreeNode right = new HuffmanTreeNode();
+
+        HuffmanTreeNode huffmanTree = new HuffmanTreeNode();
+
+        if (leftLUT.keySet().size() == 1 && rightLUT.keySet().size() == 1) {
+            left.setLeaf(leftLUT.keySet().iterator().next());
+            right.setLeaf(rightLUT.keySet().iterator().next());
+            huffmanTree.setNode(left, right);
+            return huffmanTree;
+        } else if (leftLUT.keySet().size() == 1) {
+            left.setLeaf(leftLUT.keySet().iterator().next());
+            huffmanTree.setNode(left,
+                    buildHuffmanTreeFromLUT(rightLUT, startsWith + "1"));
+            return huffmanTree;
+        }   else if (rightLUT.keySet().size() == 1) {
+            right.setLeaf(rightLUT.keySet().iterator().next());
+            huffmanTree.setNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"), right);
+            return huffmanTree;
+        } else {
+            huffmanTree.setNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"),
+                    buildHuffmanTreeFromLUT(rightLUT, startsWith + "1"));
+            return huffmanTree;
+        }
+    }
+
     private static NodeCount createNewNodeCount(NodeCount nc1, NodeCount nc2) {
         HuffmanTreeNode newNode = buildHuffmanTreeNode(nc1.getNode(), nc2.getNode());
         Integer newCount = nc1.getCount() + nc2.getCount();
