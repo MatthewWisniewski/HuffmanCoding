@@ -49,6 +49,3 @@ public class BinaryStringUtils {
         return padding.append(str).toString();
     }
 }
-
-
-//TODO: BinaryStringBuffer class, containing methods such as nextNBits, nextNBytes (?), returnRemainingBuffer

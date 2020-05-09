@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-//TODO: We appear to be losing the final character of the file in the encoding and decoding process
 
 public class Main {
 
