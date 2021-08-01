@@ -3,6 +3,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class HuffmanTreeFactory {
 
@@ -10,21 +11,24 @@ public class HuffmanTreeFactory {
 
     public static HuffmanTreeNode HuffmanTreeBuilderFromString (String str) {
         HashMap<Character, Integer> characterCounts = Counter.countCharacters(str);
-        List<NodeCount> nodes = new ArrayList<>();
+
+        PriorityQueue<NodeCount> nodeQueue = new PriorityQueue<>((a,b)->(b.getCount()-a.getCount()));
+
         for (Map.Entry<Character, Integer> entry : characterCounts.entrySet()) {
-            Character key = entry.getKey();
-            Integer value = entry.getValue();
+            char key = entry.getKey();
+            int count = entry.getValue();
             HuffmanTreeNode node = buildHuffmanTreeLeaf(key);
-            NodeCount toAdd = new NodeCount(node, value);
-            nodes.add(toAdd);
+            nodeQueue.add(new NodeCount(node, count));
         }
-        while (nodes.size() > 1) {
-            nodes.sort(Comparator.comparingInt(NodeCount::getCount));
-            NodeCount newNode = createNewNodeCount(nodes.get(0), nodes.get(1));
-            nodes = nodes.subList(2, nodes.size());
-            nodes.add(newNode);
+
+        while (nodeQueue.size() > 1) {
+            NodeCount a = nodeQueue.poll();
+            NodeCount b = nodeQueue.poll();
+            NodeCount newNode = createNewNodeCount(a, b);
+            nodeQueue.add(newNode);
         }
-        return nodes.get(0).getNode();
+
+        return nodeQueue.poll().getNode();
     }
 
     public static HuffmanTreeNode buildHuffmanTreeFromLUT(HashMap<Character, String> LUT) {
