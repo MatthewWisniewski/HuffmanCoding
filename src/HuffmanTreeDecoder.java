@@ -11,10 +11,10 @@ public class HuffmanTreeDecoder {
         for (Character c : str.toCharArray()) {
 
             if (c == '0') {
-                currentNode = currentNode.getSubTree(Boolean.FALSE);
+                currentNode = currentNode.getLeftSubtree();
             }
             if (c == '1') {
-                currentNode = currentNode.getSubTree(Boolean.TRUE);
+                currentNode = currentNode.getRightSubtree();
             }
             if (currentNode.isLeaf()) {
                 output.append(currentNode.getContent());

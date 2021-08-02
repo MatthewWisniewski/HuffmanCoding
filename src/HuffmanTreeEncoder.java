@@ -46,11 +46,11 @@ public class HuffmanTreeEncoder {
         if (huffmanTree.isLeaf()) {
             characterPaths.put(huffmanTree.getContent(), "");
         } else {
-            HashMap<Character, String> leftMap = buildLUTHelper(huffmanTree.getSubTree(Boolean.FALSE));
+            HashMap<Character, String> leftMap = buildLUTHelper(huffmanTree.getLeftSubtree());
             for (Character key : leftMap.keySet()) {
                 characterPaths.put(key, "0" + leftMap.get(key));
             }
-            HashMap<Character, String> rightMap = buildLUTHelper(huffmanTree.getSubTree(Boolean.TRUE));
+            HashMap<Character, String> rightMap = buildLUTHelper(huffmanTree.getRightSubtree());
             for (Character key : rightMap.keySet()) {
                 characterPaths.put(key, "1" + rightMap.get(key));
             }

@@ -60,18 +60,6 @@ public class HuffmanTreeNode {
         return rightSubtree;
     }
 
-    public HuffmanTreeNode getSubTree(Boolean direction) {
-        try {
-            if (direction == Boolean.FALSE) {
-                return leftSubtree;
-            } else {
-                return rightSubtree;
-            }
-        } catch (Exception e) {
-            throw new IllegalArgumentException("This is a leaf, so has no subtrees");
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
