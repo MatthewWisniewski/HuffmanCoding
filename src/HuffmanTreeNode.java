@@ -3,30 +3,69 @@ import java.util.Objects;
 
 public class HuffmanTreeNode {
     private Character content;
-    private HuffmanTreeNode[] children = {};
+
+    private HuffmanTreeNode leftSubtree;
+    private HuffmanTreeNode rightSubtree;
+
+    private boolean isLeafNode;
+
+    public HuffmanTreeNode() {
+
+    }
+
+    public HuffmanTreeNode(char content) {
+        isLeafNode = true;
+        this.content = content;
+    }
+
+    public HuffmanTreeNode(HuffmanTreeNode left, HuffmanTreeNode right) {
+        isLeafNode = false;
+        leftSubtree = left;
+        rightSubtree = right;
+    }
 
     public boolean isLeaf(){
-        return children.length == 0;
+        return isLeafNode;
     }
 
     public void setLeaf(Character content) {
         this.content = content;
+        isLeafNode = true;
     }
 
     public void setNode(HuffmanTreeNode left, HuffmanTreeNode right) {
-        children = new HuffmanTreeNode[] {left, right};
+        leftSubtree = left;
+        rightSubtree = right;
+        isLeafNode = false;
     }
 
     public Character getContent() {
+        if (!isLeaf()) {
+            throw new IllegalArgumentException("This is not a leaf node, it has no content");
+        }
         return content;
+    }
+
+    public HuffmanTreeNode getLeftSubtree() {
+        if (isLeaf()) {
+            throw new IllegalArgumentException("Leaf nodes do not have subtrees");
+        }
+        return leftSubtree;
+    }
+
+    public HuffmanTreeNode getRightSubtree() {
+        if (isLeaf()) {
+            throw new IllegalArgumentException("Leaf nodes do not have subtrees");
+        }
+        return rightSubtree;
     }
 
     public HuffmanTreeNode getSubTree(Boolean direction) {
         try {
             if (direction == Boolean.FALSE) {
-                return children[0];
+                return leftSubtree;
             } else {
-                return children[1];
+                return rightSubtree;
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("This is a leaf, so has no subtrees");
@@ -42,8 +81,8 @@ public class HuffmanTreeNode {
         if (this.isLeaf() && that.isLeaf()) {
             return this.content == that.getContent();
         } else {
-            return this.getSubTree(false).equals(that.getSubTree(false))  &&
-                    this.getSubTree(true).equals(that.getSubTree(true));
+            return this.getLeftSubtree().equals(that.getLeftSubtree())  &&
+                    this.getRightSubtree().equals(that.getRightSubtree());
         }
     }
 }
