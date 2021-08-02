@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Objects;
+
 public class HuffmanTreeNode {
     private Character content;
     private HuffmanTreeNode[] children = {};
@@ -30,4 +33,17 @@ public class HuffmanTreeNode {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HuffmanTreeNode that = (HuffmanTreeNode) o;
+
+        if (this.isLeaf() && that.isLeaf()) {
+            return this.content == that.getContent();
+        } else {
+            return this.getSubTree(false).equals(that.getSubTree(false))  &&
+                    this.getSubTree(true).equals(that.getSubTree(true));
+        }
+    }
 }
