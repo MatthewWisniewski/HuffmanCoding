@@ -29,7 +29,7 @@ public class HuffmanTreeNode {
         isLeafNode = true;
     }
 
-    public void setNode(HuffmanTreeNode left, HuffmanTreeNode right) {
+    public void setSubtrees(HuffmanTreeNode left, HuffmanTreeNode right) {
         leftSubtree = left;
         rightSubtree = right;
         isLeafNode = false;
