@@ -73,13 +73,11 @@ public class HuffmanTreeFactory {
     }
 
     private static HuffmanTreeNode buildHuffmanTreeLeaf(Character content) {
-        HuffmanTreeNode leaf = new HuffmanTreeNode(content);
-        return leaf;
+        return  new HuffmanTreeNode(content);
     }
 
     private static HuffmanTreeNode buildHuffmanTreeNode(HuffmanTreeNode left, HuffmanTreeNode right) {
-        HuffmanTreeNode node = new HuffmanTreeNode(left, right);
-        return node;
+        return new HuffmanTreeNode(left, right);
     }
 
 }
