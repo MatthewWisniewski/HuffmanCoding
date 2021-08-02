@@ -12,7 +12,7 @@ public class HuffmanTreeFactory {
     public static HuffmanTreeNode HuffmanTreeBuilderFromString (String str) {
         HashMap<Character, Integer> characterCounts = Counter.countCharacters(str);
 
-        PriorityQueue<NodeCount> nodeQueue = new PriorityQueue<>((a,b)->(b.getCount()-a.getCount()));
+        PriorityQueue<NodeCount> nodeQueue = new PriorityQueue<>((a,b)->(a.getCount()-b.getCount()));
 
         for (Map.Entry<Character, Integer> entry : characterCounts.entrySet()) {
             char key = entry.getKey();
