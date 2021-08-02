@@ -30,6 +30,9 @@ public class HuffmanTreeNode {
     }
 
     public void setSubtrees(HuffmanTreeNode left, HuffmanTreeNode right) {
+        if (left == null || right == null) {
+            throw new IllegalArgumentException("Neither subtree can be a null value");
+        }
         leftSubtree = left;
         rightSubtree = right;
         isLeafNode = false;
