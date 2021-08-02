@@ -9,10 +9,6 @@ public class HuffmanTreeNode {
 
     private boolean isLeafNode;
 
-    public HuffmanTreeNode() {
-
-    }
-
     public HuffmanTreeNode(char content) {
         isLeafNode = true;
         this.content = content;

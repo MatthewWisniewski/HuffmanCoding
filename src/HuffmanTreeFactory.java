@@ -46,29 +46,23 @@ public class HuffmanTreeFactory {
             }
         }
 
-        HuffmanTreeNode left = new HuffmanTreeNode();
-        HuffmanTreeNode right = new HuffmanTreeNode();
-
-        HuffmanTreeNode huffmanTree = new HuffmanTreeNode();
+        HuffmanTreeNode left;
+        HuffmanTreeNode right;
 
         if (leftLUT.keySet().size() == 1 && rightLUT.keySet().size() == 1) {
-            left.setLeaf(leftLUT.keySet().iterator().next());
-            right.setLeaf(rightLUT.keySet().iterator().next());
-            huffmanTree.setNode(left, right);
-            return huffmanTree;
+            left = new HuffmanTreeNode(leftLUT.keySet().iterator().next());
+            right = new HuffmanTreeNode(rightLUT.keySet().iterator().next());
+            return new HuffmanTreeNode(left, right);
         } else if (leftLUT.keySet().size() == 1) {
-            left.setLeaf(leftLUT.keySet().iterator().next());
-            huffmanTree.setNode(left,
+            left = new HuffmanTreeNode(leftLUT.keySet().iterator().next());
+            return new HuffmanTreeNode(left,
                     buildHuffmanTreeFromLUT(rightLUT, startsWith + "1"));
-            return huffmanTree;
         }   else if (rightLUT.keySet().size() == 1) {
-            right.setLeaf(rightLUT.keySet().iterator().next());
-            huffmanTree.setNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"), right);
-            return huffmanTree;
+            right = new HuffmanTreeNode(rightLUT.keySet().iterator().next());
+            return new HuffmanTreeNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"), right);
         } else {
-            huffmanTree.setNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"),
+            return new HuffmanTreeNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"),
                     buildHuffmanTreeFromLUT(rightLUT, startsWith + "1"));
-            return huffmanTree;
         }
     }
 
@@ -79,14 +73,12 @@ public class HuffmanTreeFactory {
     }
 
     private static HuffmanTreeNode buildHuffmanTreeLeaf(Character content) {
-        HuffmanTreeNode leaf = new HuffmanTreeNode();
-        leaf.setLeaf(content);
+        HuffmanTreeNode leaf = new HuffmanTreeNode(content);
         return leaf;
     }
 
     private static HuffmanTreeNode buildHuffmanTreeNode(HuffmanTreeNode left, HuffmanTreeNode right) {
-        HuffmanTreeNode node = new HuffmanTreeNode();
-        node.setNode(left, right);
+        HuffmanTreeNode node = new HuffmanTreeNode(left, right);
         return node;
     }
 

@@ -6,29 +6,17 @@ public class HuffmanTreeFactoryTest {
 
     @Test
     public void huffmanTreeBuilderFromStringCorrectHuffmanTree() {
-        HuffmanTreeNode a = new HuffmanTreeNode();
-        a.setLeaf('a');
-        HuffmanTreeNode b = new HuffmanTreeNode();
-        b.setLeaf('b');
-        HuffmanTreeNode c = new HuffmanTreeNode();
-        c.setLeaf('c');
-        HuffmanTreeNode d = new HuffmanTreeNode();
-        d.setLeaf('d');
-        HuffmanTreeNode e = new HuffmanTreeNode();
-        e.setLeaf('e');
+        HuffmanTreeNode a = new HuffmanTreeNode('a');
+        HuffmanTreeNode b = new HuffmanTreeNode('b');
+        HuffmanTreeNode c = new HuffmanTreeNode('c');
+        HuffmanTreeNode d = new HuffmanTreeNode('d');
+        HuffmanTreeNode e = new HuffmanTreeNode('e');
 
-        HuffmanTreeNode expected = new HuffmanTreeNode();
+        HuffmanTreeNode rightRightRight = new HuffmanTreeNode(a, c);
+        HuffmanTreeNode rightRight = new HuffmanTreeNode(b, rightRightRight);
+        HuffmanTreeNode right = new HuffmanTreeNode(e, rightRight);
 
-        HuffmanTreeNode right = new HuffmanTreeNode();
-
-        HuffmanTreeNode rightRight = new HuffmanTreeNode();
-
-        HuffmanTreeNode rightRightRight = new HuffmanTreeNode();
-
-        rightRightRight.setNode(a, c);
-        rightRight.setNode(b, rightRightRight);
-        right.setNode(e, rightRight);
-        expected.setNode(d, right);
+        HuffmanTreeNode expected = new HuffmanTreeNode(d, right);
 
         String inputStr = "abbcdddddeee";
 
