@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.Objects;
-
 public class HuffmanTreeNode {
     private Character content;
 
