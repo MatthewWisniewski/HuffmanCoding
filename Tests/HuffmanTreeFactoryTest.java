@@ -36,7 +36,7 @@ public class HuffmanTreeFactoryTest {
     }
 
     @Test
-    public void huffmanTreeBuilderFromStringCorrectHuffmanTree() {
+    public void testHuffmanTreeBuilderFromStringCorrectHuffmanTree() {
 
         HuffmanTreeNode expected = huffmanTree;
 
