@@ -1,7 +1,7 @@
 public class NodeCount {
 
-    private HuffmanTreeNode node;
-    private Integer count;
+    private final HuffmanTreeNode node;
+    private final int count;
 
     public NodeCount(HuffmanTreeNode node, Integer count) {
         this.node = node;
