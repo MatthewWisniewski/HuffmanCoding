@@ -11,12 +11,9 @@ public class BinaryNumberIterator {
 
     public BinaryNumberIterator(String binaryNumber) {
         this.binaryNumber = binaryNumber;
-        initialiseIterator();
-    }
-
-    private void initialiseIterator() {
         iterator = new StringCharacterIterator(binaryNumber);
     }
+
 
     public String getNextNBits(int n) {
         StringBuilder output = new StringBuilder();
