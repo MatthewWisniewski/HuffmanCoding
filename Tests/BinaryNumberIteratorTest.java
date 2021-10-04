@@ -42,4 +42,12 @@ class BinaryNumberIteratorTest {
         iter2.skipNextNBits(4);
         assertEquals(expected2, iter2.returnRemainingBuffer());
     }
+
+    @Test
+    public void testSkipNextNBytesAndReturnRemainingBuffer() {
+        String input = "11111111000000001";
+        BinaryNumberIterator iter = new BinaryNumberIterator(input);
+        iter.skipNextNBytes(2);
+        assertEquals("1", iter.returnRemainingBuffer());
+    }
 }
