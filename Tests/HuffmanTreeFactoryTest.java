@@ -1,11 +1,17 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HuffmanTreeFactoryTest {
 
-    @Test
-    public void huffmanTreeBuilderFromStringCorrectHuffmanTree() {
+    private static HuffmanTreeNode huffmanTree;
+    private static HashMap<Character, String> huffmanTreeLUT;
+
+    @BeforeAll
+    public static void setUp() {
         HuffmanTreeNode a = new HuffmanTreeNode('a');
         HuffmanTreeNode b = new HuffmanTreeNode('b');
         HuffmanTreeNode c = new HuffmanTreeNode('c');
@@ -16,7 +22,23 @@ public class HuffmanTreeFactoryTest {
         HuffmanTreeNode rightRight = new HuffmanTreeNode(b, rightRightRight);
         HuffmanTreeNode right = new HuffmanTreeNode(e, rightRight);
 
-        HuffmanTreeNode expected = new HuffmanTreeNode(d, right);
+        huffmanTree = new HuffmanTreeNode(d, right);
+
+        huffmanTreeLUT = new HashMap<>() {
+            {
+                put('d', "0");
+                put('e', "10");
+                put('b', "110");
+                put('a', "1110");
+                put('c', "1111");
+            }
+        };
+    }
+
+    @Test
+    public void huffmanTreeBuilderFromStringCorrectHuffmanTree() {
+
+        HuffmanTreeNode expected = huffmanTree;
 
         String inputStr = "abbcdddddeee";
 
@@ -26,4 +48,13 @@ public class HuffmanTreeFactoryTest {
                 "in this simple testcase");
 
     }
+
+    @Test
+    public void testBuildHuffmanTreeFromLUT() {
+        HuffmanTreeNode actual = HuffmanTreeFactory.buildHuffmanTreeFromLUT(huffmanTreeLUT);
+        assertEquals(actual, huffmanTree,
+                "Not properly constructing Huffman tree from LUT");
+    }
+
+
 }
