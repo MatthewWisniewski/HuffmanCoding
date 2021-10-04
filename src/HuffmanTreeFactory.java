@@ -46,21 +46,19 @@ public class HuffmanTreeFactory {
         HuffmanTreeNode left;
         HuffmanTreeNode right;
 
-        if (leftLUT.keySet().size() == 1 && rightLUT.keySet().size() == 1) {
+        if (leftLUT.keySet().size() == 1) {
             left = new HuffmanTreeNode(leftLUT.keySet().iterator().next());
-            right = new HuffmanTreeNode(rightLUT.keySet().iterator().next());
-            return new HuffmanTreeNode(left, right);
-        } else if (leftLUT.keySet().size() == 1) {
-            left = new HuffmanTreeNode(leftLUT.keySet().iterator().next());
-            return new HuffmanTreeNode(left,
-                    buildHuffmanTreeFromLUT(rightLUT, startsWith + "1"));
-        }   else if (rightLUT.keySet().size() == 1) {
-            right = new HuffmanTreeNode(rightLUT.keySet().iterator().next());
-            return new HuffmanTreeNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"), right);
         } else {
-            return new HuffmanTreeNode(buildHuffmanTreeFromLUT(leftLUT, startsWith + "0"),
-                    buildHuffmanTreeFromLUT(rightLUT, startsWith + "1"));
+            left = buildHuffmanTreeFromLUT(leftLUT, startsWith + "0");
         }
+
+        if (rightLUT.keySet().size() == 1) {
+            right = new HuffmanTreeNode(rightLUT.keySet().iterator().next());
+        } else {
+            right = buildHuffmanTreeFromLUT(rightLUT, startsWith + "1");
+        }
+
+        return new HuffmanTreeNode(left, right);
     }
 
     private static NodeCount createNewNodeCount(NodeCount nc1, NodeCount nc2) {
