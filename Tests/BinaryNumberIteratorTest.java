@@ -50,4 +50,19 @@ class BinaryNumberIteratorTest {
         iter.skipNextNBytes(2);
         assertEquals("1", iter.returnRemainingBuffer());
     }
+
+    @Test
+    public void testSkipNBitsMoreBitsThanRemaining() {
+        String input = "1111";
+        BinaryNumberIterator iter = new BinaryNumberIterator(input);
+        iter.skipNextNBits(5);
+        assertEquals("", iter.returnRemainingBuffer());
+    }
+    @Test
+    public void testSkipNBytesMoreBitsThanRemaining() {
+        String input = "1111000011110000";
+        BinaryNumberIterator iter = new BinaryNumberIterator(input);
+        iter.skipNextNBytes(3);
+        assertEquals("", iter.returnRemainingBuffer());
+    }
 }

@@ -16,12 +16,16 @@ public class BinaryNumberIterator {
 
 
     public String getNextNBits(int n) {
-        StringBuilder output = new StringBuilder();
-        for (char c = iterator.current(); c != iterator.DONE && n > 0; c = iterator.next()) {
-            output.append(c);
-            n--;
+        StringBuilder bits = new StringBuilder();
+        char c = iterator.current();
+        for (int i = 0; i < n; i++) {
+            if (c == iterator.DONE) {
+                break;
+            }
+            bits.append(c);
+            c = iterator.next();
         }
-        return output.toString();
+        return bits.toString();
     }
 
     public String getNextNBytes(int n) {
@@ -29,8 +33,8 @@ public class BinaryNumberIterator {
     }
 
     public void skipNextNBits(int n) {
-        for (char c = iterator.current(); c != iterator.DONE && n > 0; c = iterator.next()) {
-            n--;
+        for (int i = 0; i < n; i++) {
+            iterator.next();
         }
     }
 
