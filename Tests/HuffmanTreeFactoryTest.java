@@ -30,7 +30,7 @@ public class HuffmanTreeFactoryTest {
                 put('e', "10");
                 put('b', "110");
                 put('a', "1110");
-                put('b', "1111");
+                put('c', "1111");
             }
         };
     }
@@ -51,8 +51,8 @@ public class HuffmanTreeFactoryTest {
 
     @Test
     public void testBuildHuffmanTreeFromLUT() {
-        assertEquals(HuffmanTreeFactory.buildHuffmanTreeFromLUT(huffmanTreeLUT),
-                huffmanTree,
+        HuffmanTreeNode actual = HuffmanTreeFactory.buildHuffmanTreeFromLUT(huffmanTreeLUT);
+        assertEquals(actual, huffmanTree,
                 "Not properly constructing Huffman tree from LUT");
     }
 
