@@ -14,13 +14,13 @@ public class HuffmanTreeDecoder {
      * Decodes a binary string by traversing through
      * the Huffman Tree.
      *
-     * @param str Encoded binary string
-     * @return    The plaintext decoded message
+     * @param encodedBinaryString Encoded binary string
+     * @return                    The plaintext decoded message
      */
-    public String decodeString(String str) {
+    public String decodeString(String encodedBinaryString) {
         HuffmanTreeNode currentNode = huffmanTree;
         StringBuilder output = new StringBuilder();
-        for (Character c : str.toCharArray()) {
+        for (Character c : encodedBinaryString.toCharArray()) {
 
             if (c == '0') {
                 currentNode = currentNode.getLeftSubtree();
