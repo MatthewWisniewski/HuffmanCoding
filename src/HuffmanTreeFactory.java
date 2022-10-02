@@ -2,10 +2,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+/** A collection of static methods to generate HuffmanTreeNode objects */
 public class HuffmanTreeFactory {
 
-    //Given a string, produce the associated huffman tree
-
+    /**
+     * Generates the Huffman tree for a given string.
+     *
+     * @param str The string that will be analysed to generate
+     *            a Huffman tree.
+     * @return    The Huffman tree corresponding to the provided string.
+     */
     public static HuffmanTreeNode HuffmanTreeBuilderFromString (String str) {
         HashMap<Character, Integer> characterCounts = Counter.countCharacters(str);
 
@@ -28,6 +34,13 @@ public class HuffmanTreeFactory {
         return nodeQueue.poll().getNode();
     }
 
+    /**
+     * Converts a Huffman tree look-up table, which matches characters to binary strings
+     * into a HuffmanTreeNode object.
+     *
+     * @param LUT A Hashmap mapping a character to its route encoding in a Huffman tree.
+     * @return    The Huffman tree corresponding to the look-up table.
+     */
     public static HuffmanTreeNode buildHuffmanTreeFromLUT(HashMap<Character, String> LUT) {
         return buildHuffmanTreeFromLUT(LUT, "");
     }
